@@ -4,4 +4,3 @@ CREATE TABLE clueless (
 );
 
 INSERT INTO  clueless (word) values ('gdjgdfkflk');
-
