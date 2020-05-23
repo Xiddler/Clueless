@@ -1,9 +1,5 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
-'''
-request.form['name']: use indexing if you know the key exists
-request.form.get('name')
-'''
 
 from flask import Flask, url_for, render_template, request
 import sqlite3
@@ -14,25 +10,13 @@ app = Flask(__name__)
 def index():
         # Submitted words
         data = request.form # in key:value pairs
-        # data = request.args # in strings
-        # word_a = data['word_a'] # nope!  
-        # print(word_a)
-        # print(data['name']) # nope! 
-        print('*')
-        # print(data.get('name')) # nope! 
-        # neh = request.form.get('word_a') # nope! 
-        # neh = request.form.get('value') # nope! 
-        # neh = request.form.get('name') # nope! 
-        # neh = request.form['word_a'] # nope! 
-        # neh = request.form['name'] # nope! 
-        word_a = request.form['booh'] # works!
+        print(data)
+        word_a = data['aword'] # works!
         print(word_a)
-        # print(data.get('word_a'))
-        # word_a = data.get('a_word')
-        # word_a = data.get('word_a')
-        # word_a = data['word_a']
-        # print(word_a)
-        # word_b = data.get('b-word')
+        word_a = data['bword'] # works!
+        # word_aa = data['id']
+        # print(word_aa)
+        # word_b = data['bword'] #
         # print(word_b)
         # word_c = data.get('c-word')
         # word_d = data['d-word']

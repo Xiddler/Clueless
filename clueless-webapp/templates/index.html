@@ -18,8 +18,8 @@
     </div>  <!-- end todays-->
     <div class="word-form"> 
 		<form action="{{ url_for('index') }}" method="POST">
-            <div class="word-line"><span>a</span> <input type="text" name="booh" value="{{ word_a }}" class="a med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" name="submit_button" value="Chk" class="btn-small small-text" /></div> <p class="large-text"><strong>{{ word_a }}</strong></p>
-            <div class="word-line"><span>b</span> <input type="text" value="{{ word_b }}" class="b med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
+            <div class="word-line"><span>a</span> <input type="text" id="aaword" name="aword" value="{{ word_a }}" class="a med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" name="submit_button" value="Chk" class="btn-small small-text" /></div> <p class="large-text"><strong>{{ word_a }}</strong></p>
+            <div class="word-line"><span>b</span> <input type="text" id="bbword"  name="bword" value="{{ word_b }}" class="b med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
             <div class="word-line"><span>c</span> <input type="text" value="{{ word_c }}" class="c med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
             <div class="word-line"><span>d</span> <input type="text" value="{{ word_d }}" class="d med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
             <div class="word-line"><span>e</span> <input type="text" value="{{ word_e }}" class="e med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
@@ -46,6 +46,7 @@
             <div class="word-line"><span>z</span> <input type="text" value="{{ word_z }}" class="y med-text" /> <input type="submit" value="Ent" class="btn-small small-text" /><input type="submit" value="Chk" class="btn-small small-text" /></div>
             <div class="word-line"><span></span> <div type="none" name="word" class="all med-text"> </div> <input type="submit" value="Enter All" class="btn-small small-text" /><input type="submit" value="Check All" class="btn-small small-text" /></div>
     </div> <!-- end word-form -->
+        </form>
     <br/>
     <div class="footer">
         <p>1. Only English words from a typical student dictionary say 60,000 word </p>
