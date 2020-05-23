@@ -12,49 +12,35 @@ def index():
         data = request.form # in key:value pairs
         print(data)
         word_a = data['aword'] # works!
-        print(word_a)
-        word_a = data['bword'] # works!
-        # word_aa = data['id']
-        # print(word_aa)
-        # word_b = data['bword'] #
-        # print(word_b)
-        # word_c = data.get('c-word')
-        # word_d = data['d-word']
-        # word_e = data['e-word']
-        # word_f = data['f-word']
-        # word_g = data['g-word']
-        # word_h = data['h-word']
-        # word_i = data['i-word']
-        # word_j = data['j-word']
-        # word_k = data['k-word']
-        # word_l = data['l-word']
-        # word_m = data['m-word']
-        # word_n = data['n-word']
-        # word_o = data['o-word']
-        # word_p = data['p-word']
-        # word_q = data['q-word']
-        # word_r = data['r-word']
-        # word_s = data['s-word']
-        # word_t = data['t-word']
-        # word_u = data['u-word']
-        # word_v = data['v-word']
-        # word_w = data['w-word']
-        # word_x = data['x-word']
-        # word_y = data['y-word']
-        # word_z = data['z-word']
+        word_b = data['bword'] 
+        word_c = data['cword'] 
+        word_d = data['dword']
+        word_e = data['eword']
+        word_f = data['fword']
+        word_g = data['gword']
+        word_h = data['hword']
+        word_i = data['iword']
+        word_j = data['jword']
+        word_k = data['kword']
+        word_l = data['lword']
+        word_m = data['mword']
+        word_n = data['nword']
+        word_o = data['oword']
+        word_p = data['pword']
+        word_q = data['qword']
+        word_r = data['rword']
+        word_s = data['sword']
+        word_t = data['tword']
+        word_u = data['uword']
+        word_v = data['vword']
+        word_w = data['wword']
+        word_x = data['xword']
+        word_y = data['yword']
+        word_z = data['zword']
         word_holder = []
-        # word_holder.append(word_a)
-        # word_holder.append(word_b)
-        # word_holder.append(word_c)
-        # print(word_holder)
-        # print(data['Ent'])
-        # myword_a = data['a_word']
-        # word_holder.append(myword_a)
-        # print(myword_a)
-        # myword_b = data['b-word']
-        # word_holder.append(myword_b)
-        # print(myword_b)
-        # print(word_holder[0:])
+        word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_k, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t, word_u, word_v, word_w, word_x, word_y, word_z, ])
+        print(word_holder)
+
         # if request.method == 'POST':
             # if data['Ent'] in request.form:
                 # word-holder.append(word_1)
@@ -67,18 +53,39 @@ def index():
         # else:
             # pass # unknown
 
-        # OUTPUT new snippet
-        # conn = sqlite3.connect('words.db')
-	# print("Opened database successfully")
-        # cur = conn.cursor()
+        # OUTPUT - compare entered words to words in database
+        conn = sqlite3.connect('words.db')
+        print("Opened database successfully")
+        cur = conn.cursor()
         # cur.execute("SELECT word FROM words ORDER BY id DESC; ")
-        # cur.execute("SELECT word FROM words where id < 9; ")
-	# all_words = cur.fetchall()
-	# fetchall() returns a row list
-	# test = cur.fetchone()
-	# most_recent = [item[0] for item in all_snippets[0:2]]
+        cur.execute("SELECT word FROM words;")
+        all_words = cur.fetchall()
+        # print(len(all_words)) # 88280
+        # print(type(all_words)) # class list
+        # fetchall() returns a row (in a list)
+        # test = cur.fetchone()
+        # print(test)
+        # most_recent = [item[0] for item in all_words[0:200]]
+        # print(most_recent)
+        # check if all words inserted are in the words table (ie the 'dictionary')
+        all_items = [item[0] for item in all_words[0:88280]]
+        # print(type(all_words)) # class list
+        # print(all_words[0]) # class list [('a', 'b', ...)]
+        # print(all_items[0]) # class list ['a', 'b', ...]
+        # print(type(all_items)) # class list
+        for word in word_holder:
+            if word in all_items:
+                print("Correct")
+            else: 
+                print("Not in our database")
+
+
+
+
 	# word1 = all_words[0:1][0][0]
 	# word2 = all_words[1:2][0][0]
+        # print(word1)
+        # print(word2)
 	# word1 = all_words[2:3][0][0]
 	# word2 = all_words[3:4][0][0]
 	# conn.close()	
@@ -87,8 +94,8 @@ def index():
         # output the entered word for my testing purposes
         # return render_template('index.html', word1=word1, word2=word2, myword1=myword1)
         # return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c)
-        return render_template('index.html', word_a=word_a)
-        # return render_template('index.html')
+        return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z) 
+        # return render_template('index.html') 
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0', port=9000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
