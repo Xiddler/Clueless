@@ -73,11 +73,16 @@ def index():
         # print(all_words[0]) # class list [('a', 'b', ...)]
         # print(all_items[0]) # class list ['a', 'b', ...]
         # print(type(all_items)) # class list
+        correct = []
+        incorrect = []
         for word in word_holder:
             if word in all_items:
-                print("Correct")
+                correct.append(word)
+                print(word, "Correct")
             else: 
+                incorrect.append(word)
                 print("Not in our database")
+        
 
 
 
@@ -94,8 +99,22 @@ def index():
         # output the entered word for my testing purposes
         # return render_template('index.html', word1=word1, word2=word2, myword1=myword1)
         # return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c)
-        return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z) 
+        return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, correct=correct, incorrect=incorrect) 
         # return render_template('index.html') 
+
+
+# function to refresh page with fields all cleared
+# @app.route('/register', methods=['GET', 'POST'])
+# def register():
+#     form = RegistrationForm()
+
+#     if form.validate_on_submit():
+#         # do stuff with valid form
+#         # then redirect to "end" the form
+#         return redirect(url_for('register'))
+
+#     # initial get or form didn't validate
+#     return render_template('register.html', form=form)
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0', port=9000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
