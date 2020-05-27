@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Clueless App</title>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+</head>
+
+<body>
+	<div class="container">
+    <div class="banner">CLUELESS</div>
+    <div class="todays">
+        <p> Constraints: Easy</p>
+        <p> Contains letter p anywhere </p>
+        <p> 90s : Very Good 120s : Not Bad  150s : Not Great &gt;180s : Huh?   </p>
+    </div>  <!-- end todays-->
+    
+        <p>All your words were in our database  except for the following:
+        <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
+        {% for word in incorrect %}  {{ word }}   {% endfor %}
+        </p>
+
+    <div class="word-form"> 
+		<form action="{{ url_for('index') }}" method="POST">
+            <!-- <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" class="a med-text" /></div> -->
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" class="a med-text" /></div>
+            <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /></div>
+            <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /></div>
+            <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /></div>
+            <div class="word-line"><span>e</span> <input type="text" name="eword" value="{{ word_e }}" class="e med-text" /></div>
+            <div class="word-line"><span>f</span> <input type="text" name="fword" value="{{ word_f }}" class="f med-text" /></div>
+            <div class="word-line"><span>g</span> <input type="text" name="gword" value="{{ word_g }}" class="f med-text" /></div>
+            <div class="word-line"><span>h</span> <input type="text" name="hword" value="{{ word_h }}" class="g med-text" /></div>
+            <div class="word-line"><span>i</span> <input type="text" name="iword" value="{{ word_i }}" class="h med-text" /></div>
+            <div class="word-line"><span>j</span> <input type="text" name="jword" value="{{ word_j }}" class="i med-text" /></div>
+            <div class="word-line"><span>k</span> <input type="text" name="kword" value="{{ word_k }}" class="j med-text" /></div>
+            <div class="word-line"><span>l</span> <input type="text" name="lword" value="{{ word_l }}" class="k med-text" /></div>
+            <div class="word-line"><span>m</span> <input type="text" name="mword" value="{{ word_m }}" class="l med-text" /></div>
+            <div class="word-line"><span>n</span> <input type="text" name="nword" value="{{ word_n }}" class="m med-text" /></div>
+            <div class="word-line"><span>o</span> <input type="text" name="oword" value="{{ word_o }}" class="n med-text" /></div>
+            <div class="word-line"><span>p</span> <input type="text" name="pword" value="{{ word_p }}" class="o med-text" /></div>
+            <div class="word-line"><span>q</span> <input type="text" name="qword" value="{{ word_q }}" class="p med-text" /></div>
+            <div class="word-line"><span>r</span> <input type="text" name="rword" value="{{ word_r }}" class="q med-text" /></div>
+            <div class="word-line"><span>s</span> <input type="text" name="sword" value="{{ word_s }}" class="r med-text" /></div>
+            <div class="word-line"><span>t</span> <input type="text" name="tword" value="{{ word_t }}" class="s med-text" /></div>
+            <div class="word-line"><span>u</span> <input type="text" name="uword" value="{{ word_u }}" class="t med-text" /></div>
+            <div class="word-line"><span>v</span> <input type="text" name="vword" value="{{ word_v }}" class="u med-text" /></div>
+            <div class="word-line"><span>w</span> <input type="text" name="wword" value="{{ word_w }}" class="v med-text" /></div>
+            <div class="word-line"><span>x</span> <input type="text" name="xword" value="{{ word_x }}" class="w med-text" /></div>
+            <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="x med-text" /></div>
+            <div class="word-line"><span>z</span> <input type="text" name="zword" value="{{ word_z }}" class="y med-text" /></div>
+
+            <button type="submit" value="Enter All" class="btn-large large-text">Submit</button>
+
+            <button type="submit" value="Enter All" class="btn-large large-text">Reload</button>
+
+    </div> <!-- end word-form -->
+        </form>
+    <br/>
+    <div class="footer">
+        <p>1. Only English words from a typical student dictionary say 60,000 word </p>
+        <p>2. No proper names, hyphens or apostrophes </p>
+        <p>3. Note the time taken</p>
+        <!-- <p>Your correct words were: -->
+        <!-- {% for word in correct %} <span>{{ word  }} </span> {% endfor %} -->
+        <!-- </p> -->
+
+
+<!-- <ul> -->
+<!-- {% for user in userlist %} -->
+<!--   <li> -->
+<!--       {{ user }} {{loop.counter}} -->
+<!--   </li> -->
+<!--       {% if loop.counter == 1 %} -->
+<!--           This is the First user -->
+<!--       {% endif %} -->
+<!-- {% endfor %} -->
+<!-- </ul> -->
+
+    </div>  <!-- end footer -->
+	</div> <!-- container -->
+</body>
+</html>
