@@ -11,11 +11,12 @@ app.config.from_object(Config) # Secret key in config.py
 # secret_key = app.config['SECRET_KEY']
 
 def constraints():
+    ''' Set up the constraints for this game '''
     num = 2
     level = "Easy"
     rule = "Ends in letter w"
     time = "4 minutes"
-    game = f"Game: {num}  |  Level: {level}  |  Constraint: {rule}  |  Time allowed: {time}"
+    game = f"No: {num}  |  Level: {level}  |  Constraint: {rule}  |  Time allowed: {time}"
     return game
 
 @app.route('/', methods=['GET', 'POST'])
@@ -37,7 +38,7 @@ def game():
         data = request.form # in key:value pairs
         print(data)
         word_holder = [] # initialise list of words entered by user
-        word_a = data.get('aword') #['aword'] 
+        word_a = data.get('aword') # data['aword'] requires an initial value in the input field
         word_b = data.get('bword')
         word_c = data.get('cword') 
         word_d = data.get('dword')
@@ -82,11 +83,17 @@ def game():
         conn.close()	
         print("Closed database successfully")
 
-        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect, game=game)
+        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect, num=num, level=level, rule=rule, time=time, game=game)
 
     else:
-        return render_template('game.html', game=game) # Blank if loaded by pressing the PLAY! button in index.html
+         # Input fields are blank if loaded by pressing the PLAY! button in index.html
+        return render_template('game.html', game=game) 
+        # return redirect(url_for('/game'))
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
+    # app.run(host ='192.168.1.103', port=5000, debug=True)  
+    # app.run(host ='192.168.1.103', port=5000, debug=False)  
+    # app.run(host ='127.0.0.1', port=5000, debug=False)  
+
 

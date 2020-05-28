@@ -12,15 +12,18 @@
 	<div class="container">
         <div class="replay">
           <a class="new_game" href="{{ url_for('index') }}">New Game</a>
-        </div>
-        <p> Current game - {{ game }} </p>
+        <p class="the_game">No.: {{ num }} </p>
+        <p class="the_game">Level: {{ level }} </p>
+        <p class="the_game">Constraint: {{ rule }} </p>
+        <p class="the_game">Time allowed:  {{ time }} </p>
 
+        </div>
          <div class="countdown" ><span id="time">4:00</span></div>
 
 
     <div class="word-form"> 
 		<form action="{{ url_for('game')}}" method="POST">
-            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" class="a med-text" /></div>
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" autofocus="autofocus" class="a med-text" /></div>
             <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /></div>
             <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /></div>
             <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /></div>
@@ -47,11 +50,12 @@
             <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="x med-text" /></div>
             <div class="word-line"><span>z</span> <input type="text" name="zword" value="{{ word_z }}" class="y med-text" /></div>
     </div> <!-- end word-form -->
+    <button class="btn-large small-txt" name="submit" value="Submit">Submit</button>
         </form>
     <br/>
-        <p>All your words were in our database  except for the following:
+        <p class="float">Not in database:
         <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
-        {% for word in incorrect %}  {{ word }}   {% endfor %}
+        {% for word in incorrect %}  {{ word }} {% endfor %}  <br/> 
         </p>
 
 	</div> <!--end container -->

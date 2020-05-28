@@ -1,5 +1,6 @@
 * {margin: 20px; font-family: arial; }
-.container {margin: auto; width: 90%; background-color: #ccc;}
+body {background-color: #333;}
+.container {margin: auto; width: 80%; background-color: #555; color: #eee;}
 /* .word-line {height: 2em; } */ 
 /* .word-line {display: grid;} */ 
 .word-line {display: flex; flex-direction: row; flex-wrap: wrap;} 
@@ -16,6 +17,14 @@
   color: red;
 }
 
+.float {
+  position: fixed;
+  right: 20%;
+  top: 40%;
+  z-index: 200;
+  font-size: 25px;
+  color: #fff;
+}
 .more_games {
   list-style-type: none;
 
@@ -26,6 +35,29 @@
 }
 
 .new_game {
-float: right;
+    font-family: arial, sans-serif;
+    font-size: 30px;
+    width: 10%;
+    height: auto;
+    float: right;
+    border: 3px red solid;
+    background-color: #ddd;
+    text-decoration: none;
+    text-align: center;
 
 }
+
+
+.word-line span {
+    color: #fff;
+  font-size: 30px;
+}
+
+
+.the_game { 
+  color: #fff;
+  font-size: 20px;
+}
+
+
+
