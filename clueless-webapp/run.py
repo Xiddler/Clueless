@@ -10,57 +10,56 @@ app = Flask(__name__)
 app.config.from_object(Config) # Secret key in config.py
 # secret_key = app.config['SECRET_KEY']
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+# @app.route('/index/', methods=['GET', 'POST'])
 def index():
-    # Submitted words
-    return render_template('index.html')
+    # Welcome page with constraints
+    print("1", request.method)  # GET
+    if request.form:
+        print("2", request.method)  # GET
+        print("Form was found!")
+    elif request.method == 'POST':
+        print("3", request.method)  # GET
+        print("Form was NOT found")
+    else:
+        print("4", request.method)  # GET
+        return render_template('index.html')
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
-    data = request.form # in key:value pairs
-    print(data)
-    word_holder = [] # initialise list of words entered by user
-    if data['action'] == 'reload':
-        redirect(request.url)
-            # print("Yay!!")
-    if request.method == 'POST':
-        word_a = data['aword']
-        word_b = data['bword']
-        word_c = data['cword'] 
-        word_d = data['dword']
-        word_e = data['eword']
-        word_f = data['fword']
-        word_g = data['gword']
-        word_h = data['hword']
-        word_i = data['iword']
-        word_j = data['jword']
-        word_k = data['kword']
-        word_l = data['lword']
-        word_m = data['mword']
-        word_n = data['nword']
-        word_o = data['oword']
-        word_p = data['pword']
-        word_q = data['qword']
-        word_r = data['rword']
-        word_s = data['sword']
-        word_t = data['tword']
-        word_u = data['uword']
-        word_v = data['vword']
-        word_w = data['wword']
-        word_x = data['xword']
-        word_y = data['yword']
-        word_z = data['zword']
+    print("in the /game route now")
+    if request.method == 'POST': # loaded when the player presses enter in any of the input boxes
+        print("method is NOOOOOOOOOOOOW POST!")
+        data = request.form # in key:value pairs
+        print(data)
+        word_holder = [] # initialise list of words entered by user
+        word_a = data.get('aword') #['aword'] 
+        word_b = data.get('bword')
+        word_c = data.get('cword') 
+        word_d = data.get('dword')
+        word_e = data.get('eword')
+        word_f = data.get('fword')
+        word_g = data.get('gword')
+        word_h = data.get('hword')
+        word_i = data.get('iword')
+        word_j = data.get('jword')
+        word_k = data.get('kword')
+        word_l = data.get('lword')
+        word_m = data.get('mword')
+        word_n = data.get('nword')
+        word_o = data.get('oword')
+        word_p = data.get('pword')
+        word_q = data.get('qword')
+        word_r = data.get('rword')
+        word_s = data.get('sword')
+        word_t = data.get('tword')
+        word_u = data.get('uword')
+        word_v = data.get('vword')
+        word_w = data.get('wword')
+        word_x = data.get('xword')
+        word_y = data.get('yword')
+        word_z = data.get('zword')
         word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_k, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t, word_u, word_v, word_w, word_x, word_y, word_z, ])
-
-        # If Submit button pressed, try to clear the fields for another run
-            # if data['action'] == 'submit':
-                # print("YAY!")
-                # return redirect('/')
-            # else:
-                # pass
-
-
         # OUTPUT - compare entered words to words in database
         conn = sqlite3.connect('words.db')
         print("Opened database successfully")
@@ -72,28 +71,16 @@ def game():
         all_items = [item[0] for item in all_words[0:88280]] # make into a regular list
         incorrect = []
         for word in word_holder:
-            if word not in all_items:
+            if word not in all_items and word != "None":
                 incorrect.append(word) # incorrect words added to list for display on the webpage
             else:
                 print(word) # correct words printed to terminal
         conn.close()	
         print("Closed database successfully")
+        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect)
 
-        # see will the following refresh page with fields all cleared
-        # if data['action'] == 'reload':
-            # print("Yay!!")
-        # if form.validate_on_submit():
-            # return redirect('./templates/submitted.html')
-        # try this to see if it will reload a blank form
-        # return redirect(request.url)
-
-    return render_template('index.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect) 
-    # return render_template('index.html')
-    # else:
-        # redirect(request.url)
- 
-
-
+    else:
+        return render_template('game.html') # Blank if loaded by pressing the PLAY! button in index.html
 
 
 # function to refresh page with fields all cleared
@@ -110,5 +97,5 @@ def game():
 #     return render_template('register.html', form=form)
 
 if __name__ == '__main__':
-    app.run(host ='0.0.0.0', port=7000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
+    app.run(host ='0.0.0.0', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
 

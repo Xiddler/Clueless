@@ -2,7 +2,7 @@
 .container {margin: auto; width: 90%; background-color: #ccc;}
 /* .word-line {height: 2em; } */ 
 /* .word-line {display: grid;} */ 
-.word-line {display: flex; flex-direction: row; flex-wrap: wrap; } 
+.word-line {display: flex; flex-direction: row; flex-wrap: wrap;} 
 .btn-small {width: 10%; height: 2em;}
 .med-text {width: 7em; font-size: 2em;}
 /* .wide {width: 80%; background-color: #ddd;} */

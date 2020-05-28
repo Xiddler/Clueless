@@ -2,20 +2,17 @@
 <html>
 
 <head>
-	<title>Clueless App</title>
+	<title>Clueless</title>
 
-	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
-	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" /> <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 </head>
 
 <body>
 	<div class="container">
-    <div class="banner">CLUELESS</div>
-    <div class="todays">
-        <p> Constraints: Easy</p>
-        <p> Contains letter p anywhere </p>
-        <p> 90s : Very Good 120s : Not Bad  150s : Not Great &gt;180s : Huh?   </p>
-    </div>  <!-- end todays-->
+        <div class="replay">
+          <a class="active" href="{{ url_for('index') }}">New Game</a>
+        </div>
+    <div class="banner"> WAKE UP!  CLUELESS has started</div>
     
         <p>All your words were in our database  except for the following:
         <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
@@ -23,7 +20,7 @@
         </p>
 
     <div class="word-form"> 
-		<form action="{{ url_for('index') }}" method="POST">
+		<form action="{{ url_for('game')}}" method="POST">
             <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" class="a med-text" /></div>
             <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /></div>
             <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /></div>
@@ -59,27 +56,7 @@
     </div> <!-- end word-form -->
         </form>
     <br/>
-    <div class="footer">
-        <p>1. Only English words from a typical student dictionary say 60,000 word </p>
-        <p>2. No proper names, hyphens or apostrophes </p>
-        <p>3. Note the time taken</p>
-        <!-- <p>Your correct words were: -->
-        <!-- {% for word in correct %} <span>{{ word  }} </span> {% endfor %} -->
-        <!-- </p> -->
 
-
-<!-- <ul> -->
-<!-- {% for user in userlist %} -->
-<!--   <li> -->
-<!--       {{ user }} {{loop.counter}} -->
-<!--   </li> -->
-<!--       {% if loop.counter == 1 %} -->
-<!--           This is the First user -->
-<!--       {% endif %} -->
-<!-- {% endfor %} -->
-<!-- </ul> -->
-
-    </div>  <!-- end footer -->
 	</div> <!-- container -->
 </body>
 </html>
