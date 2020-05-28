@@ -12,10 +12,7 @@
 	<div class="container">
         <div class="replay">
           <a class="new_game" href="{{ url_for('index') }}">New Game</a>
-        <p class="the_game">No.: {{ num }} </p>
-        <p class="the_game">Level: {{ level }} </p>
-        <p class="the_game">Constraint: {{ rule }} </p>
-        <p class="the_game">Time allowed:  {{ time }} </p>
+          <p class="the_game float">Constraint: {{ rule }} &nbsp; &nbsp; &nbsp; <span> Time allowed:  {{ time }}</span> </p>
 
         </div>
          <div class="countdown" ><span id="time">4:00</span></div>
@@ -53,9 +50,15 @@
     <button class="btn-large small-txt" name="submit" value="Submit">Submit</button>
         </form>
     <br/>
-        <p class="float">Not in database:
-        <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
-        {% for word in incorrect %}  {{ word }} {% endfor %}  <br/> 
+    <p class="incorrect">
+    {% for word in word_holder %}
+        {% if word in incorrect and word != '' %}
+            <span> {{ word }} not in Database </span> 
+        {% else %}
+            &nbsp;
+        {% endif %}
+     {% endfor %}
+
         </p>
 
 	</div> <!--end container -->

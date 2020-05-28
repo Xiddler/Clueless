@@ -60,4 +60,23 @@ body {background-color: #333;}
 }
 
 
+h4 span {
+    text-style: bold;
+    font-size: 20px;
+    color: yellow;
+}
 
+
+.incorrect {
+    color: #fff;
+    position: fixed;
+    right: 20%;
+    bottom: 10%;
+    z-index: 200;
+    font-size: 25px;
+
+}
+
+.incorrect span {
+color: red;
+}

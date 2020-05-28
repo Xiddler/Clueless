@@ -5,6 +5,7 @@
 	<title>Clueless</title>
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
 </head>
 
@@ -22,34 +23,25 @@
         <li><a href="#">6</a></li>
     </ul>
     <div class="todays">
-        <p>{{ game }} </p>
-        </hr>
-        <h4> Once you press PLAY! you will be directed to the puzzle page. The <span style="color:red;">timer</span>will countdown immediately so don't hang around</h4>
+        <table>
+            <tr><td>No.</td><td> {{ num }} </td></tr>
+            <tr><td>Level: </td><td>{{ level }} </td></tr>
+            <tr><td>Rule: </td><td>{{ rule }} </td></tr>
+            <tr><td>Time allowed: </td><td>{{ time }} </td></tr>
+        </table>
+
+    </div>
+        <hr/>
+        <h4> Once you press PLAY! you will be directed to the puzzle page. The <span>timer</span>will countdown immediately so don't hang around</h4>
         <p>1. Only English words from a typical 60-80,000 dictionary </p>
         <p>2. No plurals ending in s, no capital letters, no proper names, hyphens or apostrophes </p>
 
-        <!-- <p>Your correct words were: -->
-        <!-- {% for word in correct %} <span>{{ word  }} </span> {% endfor %} -->
-        <!-- </p> -->
-
-
-<!-- <ul> -->
-<!-- {% for user in userlist %} -->
-<!--   <li> -->
-<!--       {{ user }} {{loop.counter}} -->
-<!--   </li> -->
-<!--       {% if loop.counter == 1 %} -->
-<!--           This is the First user -->
-<!--       {% endif %} -->
-<!-- {% endfor %} -->
-<!-- </ul> -->
-
-    </div>  <!-- end todays-->
-    <form action='http://localhost:5000/game' method="GET"> 
-    <button type="submit" class="btn-large small-text" name="go" value="play" >PLAY!</button>
+    <!-- <form action='http://localhost:5000/game' method="GET"> --> 
+    <form action="{{ url_for('game') }}"  method="GET"> 
+    <button type="submit" class="btn btn-primary btn-lg" name="go" value="play" >PLAY!</button>
     </form>
-    <br/>
-    <hr/>
+    <br/> &copy; Donagh McCarthy
+    </div>  <!-- end todays-->
 	</div> <!-- container -->
 </body>
 </html>
