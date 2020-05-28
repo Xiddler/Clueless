@@ -13,22 +13,20 @@
     <div class="banner">Welcome to CLUELESS</div>
     </hr>
     <p>Other games</p>
-    <a  href="{{ url_for('clueless1') }}">1</a>
-    <a  href="{{ url_for('clueless2') }}">2</a>
-    <a  href="{{ url_for('clueless3') }}">3</a>
-    <a  href="{{ url_for('clueless4') }}">4</a>
-    <a  href="{{ url_for('clueless5') }}">5</a>
-    <a  href="{{ url_for('clueless6') }}">6</a>
+    <ul class="more_games">
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#">6</a></li>
+    </ul>
     <div class="todays">
+        <p> Current game - {{ game }} </p>
         </hr>
-        <p> Today's level: <span> Easy</span> </p>
-        <p> Today's constraints: Contains letter p anywhere </p>
-        <p> Time allowed: 4 minutes</p>
         <h4> Once you press PLAY! you will be directed to the puzzle page. The <span style="color:red;">timer</span>will countdown immediately so don't hang around</h4>
-        <div class="footer">
-        <p>1. Only English words from a typical student dictionary say 60,000 word </p>
-        <p>2. No proper names, hyphens or apostrophes </p>
-        <p>3. Note the time taken</p>
+        <p>1. Only English words from a typical 60-80,000 dictionary </p>
+        <p>2. No plurals ending in s, no capital letters, no proper names, hyphens or apostrophes </p>
 
         <!-- <p>Your correct words were: -->
         <!-- {% for word in correct %} <span>{{ word  }} </span> {% endfor %} -->
@@ -46,7 +44,6 @@
 <!-- {% endfor %} -->
 <!-- </ul> -->
 
-    </div>  <!-- end footer -->
     </div>  <!-- end todays-->
     <form action='http://localhost:5000/game' method="GET"> 
     <button type="submit" class="btn-large small-text" name="go" value="play" >PLAY!</button>

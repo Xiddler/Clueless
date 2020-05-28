@@ -5,19 +5,18 @@
 	<title>Clueless</title>
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" /> <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+ <script src="{{ url_for('static', filename='countdown.js') }}"></script>
 </head>
 
 <body>
 	<div class="container">
         <div class="replay">
-          <a class="active" href="{{ url_for('index') }}">New Game</a>
+          <a class="new_game" href="{{ url_for('index') }}">New Game</a>
         </div>
-    <div class="banner"> WAKE UP!  CLUELESS has started</div>
-    
-        <p>All your words were in our database  except for the following:
-        <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
-        {% for word in incorrect %}  {{ word }}   {% endfor %}
-        </p>
+        <p> Current game - {{ game }} </p>
+
+         <div class="countdown" ><span id="time">4:00</span></div>
+
 
     <div class="word-form"> 
 		<form action="{{ url_for('game')}}" method="POST">
@@ -47,16 +46,14 @@
             <div class="word-line"><span>x</span> <input type="text" name="xword" value="{{ word_x }}" class="w med-text" /></div>
             <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="x med-text" /></div>
             <div class="word-line"><span>z</span> <input type="text" name="zword" value="{{ word_z }}" class="y med-text" /></div>
-
-            <button type="submit" name="action" value="submit" class="btn-large small-text">Check words</button>
-
-            <button type="submit" name="action" value="reload" class="btn-large small-text">Reload</button>
-
-
     </div> <!-- end word-form -->
         </form>
     <br/>
+        <p>All your words were in our database  except for the following:
+        <!-- {% for word in incorrect %} <span>{{ word  }} </span> {% endfor %} -->
+        {% for word in incorrect %}  {{ word }}   {% endfor %}
+        </p>
 
-	</div> <!-- container -->
+	</div> <!--end container -->
 </body>
 </html>

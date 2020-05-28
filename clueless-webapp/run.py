@@ -10,26 +10,30 @@ app = Flask(__name__)
 app.config.from_object(Config) # Secret key in config.py
 # secret_key = app.config['SECRET_KEY']
 
+def constraints():
+    num = 2
+    level = "Easy"
+    rule = "Ends in letter w"
+    time = "4 minutes"
+    game = f"Game: {num}  |  Level: {level}  |  Constraint: {rule}  |  Time allowed: {time}"
+    return game
+
 @app.route('/', methods=['GET', 'POST'])
-# @app.route('/index/', methods=['GET', 'POST'])
 def index():
     # Welcome page with constraints
-    print("1", request.method)  # GET
-    if request.form:
-        print("2", request.method)  # GET
-        print("Form was found!")
-    elif request.method == 'POST':
-        print("3", request.method)  # GET
-        print("Form was NOT found")
-    else:
-        print("4", request.method)  # GET
-        return render_template('index.html')
+    game = constraints()
+    return render_template('index.html', game=game)
+
+
 
 @app.route('/game', methods=['GET', 'POST'])
 def game():
     print("in the /game route now")
-    if request.method == 'POST': # loaded when the player presses enter in any of the input boxes
-        print("method is NOOOOOOOOOOOOW POST!")
+    # The present game
+    game = constraints() # call the puzzle of the day method
+    print(constraints())
+    # loaded when the player presses enter in any of the input boxes
+    if request.method == 'POST': 
         data = request.form # in key:value pairs
         print(data)
         word_holder = [] # initialise list of words entered by user
@@ -77,24 +81,11 @@ def game():
                 print(word) # correct words printed to terminal
         conn.close()	
         print("Closed database successfully")
-        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect)
+
+        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, incorrect=incorrect, game=game)
 
     else:
-        return render_template('game.html') # Blank if loaded by pressing the PLAY! button in index.html
-
-
-# function to refresh page with fields all cleared
-# @app.route('/submitted', methods=['GET', 'POST'])
-# def register():
-#     form = RegistrationForm()
-
-#     if form.validate_on_submit():
-#         # do stuff with valid form
-#         # then redirect to "end" the form
-#         return redirect(url_for('register'))
-
-#     # initial get or form didn't validate
-#     return render_template('register.html', form=form)
+        return render_template('game.html', game=game) # Blank if loaded by pressing the PLAY! button in index.html
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
