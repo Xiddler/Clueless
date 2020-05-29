@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Clueless</title>
+	<title>Clueless </title>
 
 	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -11,7 +11,7 @@
 
 <body>
 	<div class="container">
-    <div class="banner">Welcome to CLUELESS</div>
+    <div class="banner">Welcome to CLUELESS (Currently in BETA)</div>
     </hr>
     <p>Other games</p>
     <ul class="more_games">
@@ -26,15 +26,20 @@
         <table>
             <tr><td>No.</td><td> {{ num }} </td></tr>
             <tr><td>Level: </td><td>{{ level }} </td></tr>
-            <tr><td>Rule: </td><td>{{ rule }} </td></tr>
+            <tr><td>Constraint: </td><td> On PLAY page </td></tr>
             <tr><td>Time allowed: </td><td>{{ time }} </td></tr>
         </table>
 
     </div>
         <hr/>
-        <h4> Once you press PLAY! you will be directed to the puzzle page. The <span>timer</span>will countdown immediately so don't hang around</h4>
-        <p>1. Only English words from a typical 60-80,000 dictionary </p>
-        <p>2. No plurals ending in s, no capital letters, no proper names, hyphens or apostrophes </p>
+        <p>1. The constraints will be shown on the PLAY page </p>
+        <p>2. Once you press the PLAY! button you will be directed to the puzzle page.</p>
+        <p>3. The <strong>timer</strong>will countdown immediately so don't hang around</p>
+        <p>4. On the PLAY page press TAB to move to the next word-input - it's faster!</p> 
+        <p>5. You will be alerted if you enter a word not in the database.</p>
+        <p>6. Only English words from a typical 60-80,000 dictionary </p>
+        <p>7. No plurals ending in s, no capital letters, no proper names and no hyphens or apostrophes </p>
+        <p>8. Ideas, comments, feedback and complaints are welcome! donaghmccarthybe@gmail.com  </p>
 
     <!-- <form action='http://localhost:5000/game' method="GET"> --> 
     <form action="{{ url_for('game') }}"  method="GET"> 
