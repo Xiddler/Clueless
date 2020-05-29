@@ -6,11 +6,11 @@ import sqlite3
 from config import Config
 from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in
 
-mydict = {0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'j', 10: 'k', 11: 'l', 12: 'm', 13: 'n', 14: 'o', 15: 'p', 16: 'q', 17: 'r', 18: 's', 19: 't', 20: 'u', 21: 'v', 22: 'w', 23: 'x', 24: 'y', 25: 'z'}
+from check_words import obeys_rule
 
 app = Flask(__name__)
 app.config.from_object(Config) # Secret key in config.py
-# secret_key = app.config['SECRET_KEY']
+secret_key = app.config['SECRET_KEY']
 
 class Constraints:
     """ class to set the rules of the game """  
@@ -31,19 +31,8 @@ level = constraints.level
 rule = constraints.rule
 time = constraints.time
 
-tick = {} # a dictionary to store the results of the check on user's input
 
 
-def obeys_rule():
-    """ method to make rule and filter user's words """
-    for word in word_holder: # word_holder is the list of the user's input words
-        for n in range(0,26):
-            if word[0] == word[-1]: # Game 3 constraint - check that first and last letter are the same
-                if word[n] == alfbet[n]:
-                    tick[n][1] = 'Y'
-        else:
-            print("Not acceptable")
-            tick = 'N'
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -94,7 +83,6 @@ def game():
         # word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_k, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t, word_u, word_v, word_w, word_x, word_y, word_z, ])
         word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_k, word_l, word_m, word_n, word_o, word_p, word_r, word_s, word_t, word_w, word_y])
 
-        # 
         def get_db_words():
 
             """ method to make a list of the words in the database """   
@@ -112,7 +100,7 @@ def game():
             return all_items
 
         get_db_words() 
-
+        print("Point 1")
         # Check if user's words are in the database
         correct = []
         incorrect = []
@@ -129,6 +117,22 @@ def game():
 
         # TODO check words follow the rule
         # Game 3: words start and end with key letter
+
+        # print(word_holder)
+        try:
+            mydict = obeys_rule(word_holder) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
+            print("mydict", mydict)
+        except:
+            print("there is an problem with mydict or obeys_rules")
+        finally:
+            pass
+
+        print("mydict again ==>", mydict)
+        print("mydict elem", mydict['d'])
+
+
+
+
         print("word_holder", word_holder)
 
         # print(word) # correct words printed to terminal
@@ -136,7 +140,7 @@ def game():
         print(correct)
 
         # return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_x=word_x, word_y=word_y, word_z=word_z, word_holder=word_holder, correct=correct,  incorrect=incorrect,  rule=rule, time=time )
-        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_r=word_r, word_s=word_s, word_t=word_t, word_w=word_w, word_y=word_y, word_holder=word_holder, correct=correct,  incorrect=incorrect,  rule=rule, time=time)
+        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_r=word_r, word_s=word_s, word_t=word_t, word_w=word_w, word_y=word_y, word_holder=word_holder, correct=correct,  incorrect=incorrect,  rule=rule, time=time, mydict=mydict)
 
      # Input fields are blank if loaded by pressing the PLAY! button in index.html
     else:
