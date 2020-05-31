@@ -28,10 +28,13 @@ def obeys_rule(users_words):
     for n in range(0, len(users_words)):
         if users_words[n] != '' and users_words[n][0] == users_words[n][-1]:
             # print("Acceptable")
-            tick[users_words[n][0]] = 'Y'
+ # <span style='font-size:100px;'>&#10003;</span✓>
+            # tick[users_words[n][0]] = '✓'
+            tick[users_words[n][0]] = '✅'
             # print("Not acceptable")
         elif users_words[n] != '':
-                tick[users_words[n][0]] = 'N'
+                # tick[users_words[n][0]] = 'N'
+                tick[users_words[n][0]] = '𐄂'
         else:
             print("PROBLEM 22")
     return tick

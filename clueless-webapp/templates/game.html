@@ -13,15 +13,17 @@
 	<div class="container">
         <div class="replay">
           <a class="new_game" href="{{ url_for('index') }}">Play Again</a>
-          <div class="fixed">
-             <p class="countdown" ><span id="time">4:00</span></p>
-              <p class="the_game">{{ time }}
-              <br/>
-              {{ rule }} 
-              <br/>       
-              <p class="small">(Note the countdown timer at top left)</p>
-              </p><!-- the_game -->
-          </div><!-- fixed -->
+              <table class="fixed the_game">
+                  <tr><td><p class="countdown" ><span id="time">4:00</span></p></td></tr>
+                  <tr><td>Constraint: {{ rule }}</td></tr>
+                  <tr><td>{{ time }}</td></tr>
+                  <tr><td>Note the countdown timer at top left</td></tr>
+                  <tr><td>Use TAB to move to next empty field</td></tr>
+                  <tr><td>Use ENTER to check word is acceptable</td></tr>
+                  <tr><td>Check below to see if word is not in the database</td></tr>
+                  <tr><td> 𐄂 indicates does NOT follow constraint</td></tr>
+                  <tr><td> ✅ indicates DOES follow constraint</td></tr>
+              </table>
         </div>  <!-- replay -->
 
     <div class="word-form"> 
@@ -50,16 +52,14 @@
     <button class="btn btn-primary btn-lg" name="submit" value="Submit">Submit</button>
         </form>
     <br/>
-    <p class="incorrect">
+    <table class="incorrect">
     {% for word in word_holder %}
         {% if word in incorrect and word != '' %}
-            <span> {{ word }} is not in Database </span> 
+        <tr><td> {{ word }} is not in Database </td></tr>
         {% else %}
-            &nbsp;
         {% endif %}
      {% endfor %}
-
-        </p>
+    </table>
 
 	</div> <!--end container -->
 </body>

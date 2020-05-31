@@ -5,6 +5,7 @@ from flask import Flask, url_for, render_template, request, redirect
 import sqlite3
 from config import Config
 from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in
+from collections import OrderedDict
 
 from check_words import obeys_rule
 
@@ -45,8 +46,7 @@ def index():
 def game():
     print("in the /game route now")
     # The present game
-    # loaded when the player presses enter in any of the input boxes
-    tick = ''
+    # loaded when the player presses enter in any of the input boxes or presses the submit button
     if request.method == 'POST': 
         data = request.form # in key:value pairs
         print(data)
@@ -100,7 +100,9 @@ def game():
             return all_items
 
         get_db_words() 
-        print("Point 1")
+
+        print("Checkpoint 1") 
+
         # Check if user's words are in the database
         correct = []
         incorrect = []
@@ -144,7 +146,8 @@ def game():
 
      # Input fields are blank if loaded by pressing the PLAY! button in index.html
     else:
-        return render_template('game.html', num=num, level=level, rule=rule, time=time) 
+        mydict = OrderedDict([('a', ''), ('b', ''), ('c', ''), ('d', ''), ('e', ''), ('f', ''), ('g', ''), ('h', ''), ('i', ''), ('k', ''), ('l', ''), ('m', ''), ('n', ''), ('o', ''), ('p', ''), ('r', ''), ('s', ''), ('t', ''), ('w', ''), ('y', '')])
+        return render_template('game.html', num=num, level=level, rule=rule, time=time, mydict=mydict) 
 
 if __name__ == '__main__':
     app.run(host ='0.0.0.0', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
