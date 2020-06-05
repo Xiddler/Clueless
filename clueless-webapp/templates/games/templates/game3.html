@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Clueless</title>
+
+	<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" /> <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}" />
+ <script src="{{ url_for('static', filename='countdown.js') }}"></script>
+</head>
+
+<body>
+	<div class="container">
+        <div class="replay">
+          <a class="new_game" href="{{ url_for('index') }}">New Game</a>
+          <p class="the_game float">Constraint: {{ rule }} &nbsp; &nbsp; &nbsp; <span> Time allowed:  {{ time }}</span> </p>
+
+        </div>
+         <div class="countdown" ><span id="time">4:00</span></div>
+
+
+    <div class="word-form"> 
+		<form action="{{ url_for('game')}}" method="POST">
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" autofocus="autofocus" class="a med-text" /></div>
+            <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /></div>
+            <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /></div>
+            <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /></div>
+            <div class="word-line"><span>e</span> <input type="text" name="eword" value="{{ word_e }}" class="e med-text" /></div>
+            <div class="word-line"><span>f</span> <input type="text" name="fword" value="{{ word_f }}" class="f med-text" /></div>
+            <div class="word-line"><span>g</span> <input type="text" name="gword" value="{{ word_g }}" class="f med-text" /></div>
+            <div class="word-line"><span>h</span> <input type="text" name="hword" value="{{ word_h }}" class="g med-text" /></div>
+            <div class="word-line"><span>i</span> <input type="text" name="iword" value="{{ word_i }}" class="h med-text" /></div>
+            <div class="word-line"><span>k</span> <input type="text" name="kword" value="{{ word_k }}" class="j med-text" /></div>
+            <div class="word-line"><span>l</span> <input type="text" name="lword" value="{{ word_l }}" class="k med-text" /></div>
+            <div class="word-line"><span>m</span> <input type="text" name="mword" value="{{ word_m }}" class="l med-text" /></div>
+            <div class="word-line"><span>n</span> <input type="text" name="nword" value="{{ word_n }}" class="m med-text" /></div>
+            <div class="word-line"><span>o</span> <input type="text" name="oword" value="{{ word_o }}" class="n med-text" /></div>
+            <div class="word-line"><span>p</span> <input type="text" name="pword" value="{{ word_p }}" class="o med-text" /></div>
+            <div class="word-line"><span>r</span> <input type="text" name="rword" value="{{ word_r }}" class="q med-text" /></div>
+            <div class="word-line"><span>s</span> <input type="text" name="sword" value="{{ word_s }}" class="r med-text" /></div>
+            <div class="word-line"><span>t</span> <input type="text" name="tword" value="{{ word_t }}" class="s med-text" /></div>
+            <div class="word-line"><span>w</span> <input type="text" name="wword" value="{{ word_w }}" class="v med-text" /></div>
+            <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="x med-text" /></div>
+    </div> <!-- end word-form -->
+    <button class="btn-large small-txt" name="submit" value="Submit">Submit</button>
+        </form>
+    <br/>
+    <p class="incorrect">
+    {% for word in word_holder %}
+        {% if word in incorrect and word != '' %}
+            <span> {{ word }} not in Database </span> 
+        {% else %}
+            &nbsp;
+        {% endif %}
+     {% endfor %}
+
+        </p>
+
+	</div> <!--end container -->
+</body>
+</html>
