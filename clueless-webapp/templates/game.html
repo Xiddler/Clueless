@@ -15,7 +15,7 @@
           <a class="new_game" href="{{ url_for('index') }}">Play Again</a>
               <table class="fixed the_game">
                   <tr><td><p class="countdown" ><span id="time">4:00</span></p></td></tr>
-                  <tr><td>Constraint: {{ rule }}</td></tr>
+                  <tr><td style: color=red;>Constraint: {{ rule }}</td></tr>
                   <tr><td>{{ time }}</td></tr>
                   <tr><td>Note the countdown timer at top left</td></tr>
                   <tr><td>Use TAB to move to next empty field</td></tr>
@@ -28,7 +28,7 @@
 
     <div class="word-form"> 
 		<form action="{{ url_for('game')}}" method="POST" autocomplete="off">
-            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" onfocus="this.value=''" autofocus="autofocus" class="a med-text" /><span>{{ mydict['a'] }}</div>
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}"   class="a med-text" /><span>{{ mydict['a'] }}</div>
             <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /><span>{{ mydict['b'] }}</span></div>
             <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /><span>{{ mydict['c'] }}</span></div>
             <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /><span>{{ mydict['d'] }}</span></div>
