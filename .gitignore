@@ -1,7 +1,11 @@
 *.pyc
 __pycache__/*
 *BU*
+<<<<<<< HEAD
 *.odt
 *.pdf
 from_github/*
+=======
+zArchive/*
+>>>>>>> 6eed4024b6115825ae267fda5b4d392d13319b21
 
