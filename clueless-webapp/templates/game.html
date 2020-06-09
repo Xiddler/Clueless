@@ -27,8 +27,13 @@
         </div>  <!-- replay -->
 
     <div class="word-form"> 
+		<form action="{{ url_for('game')}}" method="POST"  autocomplete="off">
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" autofocus="autofocus" class="a med-text" /><span>{{ mydict['a'] }}</div>
 		<form action="{{ url_for('game')}}" method="POST" autocomplete="off">
+<<<<<<< HEAD
             <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}"   class="a med-text" /><span>{{ mydict['a'] }}</div>
+=======
+>>>>>>> a60d376d1966be9d12e6a9ffad76cd5f7fcd25f8
             <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /><span>{{ mydict['b'] }}</span></div>
             <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /><span>{{ mydict['c'] }}</span></div>
             <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /><span>{{ mydict['d'] }}</span></div>
