@@ -79,7 +79,7 @@ def game():
         word_y = data.get('yword')
         # word_z = data.get('zword')
         # word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_k, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t, word_u, word_v, word_w, word_x, word_y, word_z, ])
-        word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i,  word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t,  word_u,  word_v, word_w, word_y])
+        word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t,  word_u,  word_v, word_w, word_y])
         word_holder = sanitized_input(word_holder) # returns a cleaned-up list of the user's input
 
         def get_db_words():
