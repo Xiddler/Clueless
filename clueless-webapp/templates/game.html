@@ -14,7 +14,7 @@
         <div class="replay">
           <a class="new_game" href="{{ url_for('index') }}">Play Again</a>
               <table class="fixed the_game">
-                  <tr><td><p class="countdown" ><span id="time">4:00</span></p></td></tr>
+                  <tr><td><p class="countdown" ><span id="time">3:00</span></p></td></tr>
                   <tr><td style: color=red;>Constraint: {{ rule }}</td></tr>
                   <tr><td>{{ time }}</td></tr>
                   <tr><td>Note the countdown timer at top left</td></tr>
@@ -27,13 +27,8 @@
         </div>  <!-- replay -->
 
     <div class="word-form"> 
-		<form action="{{ url_for('game')}}" method="POST"  autocomplete="off">
-            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}" autofocus="autofocus" class="a med-text" /><span>{{ mydict['a'] }}</div>
 		<form action="{{ url_for('game')}}" method="POST" autocomplete="off">
-<<<<<<< HEAD
-            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}"   class="a med-text" /><span>{{ mydict['a'] }}</div>
-=======
->>>>>>> a60d376d1966be9d12e6a9ffad76cd5f7fcd25f8
+            <div class="word-line"><span>a</span> <input type="text" name="aword" value="{{ word_a }}"  autofocus="autofocus" class="a med-text" /><span>{{ mydict['a'] }}</div>
             <div class="word-line"><span>b</span> <input type="text" name="bword" value="{{ word_b }}" class="b med-text" /><span>{{ mydict['b'] }}</span></div>
             <div class="word-line"><span>c</span> <input type="text" name="cword" value="{{ word_c }}" class="c med-text" /><span>{{ mydict['c'] }}</span></div>
             <div class="word-line"><span>d</span> <input type="text" name="dword" value="{{ word_d }}" class="d med-text" /><span>{{ mydict['d'] }}</span></div>
@@ -42,17 +37,20 @@
             <div class="word-line"><span>g</span> <input type="text" name="gword" value="{{ word_g }}" class="f med-text" /><span>{{ mydict['g'] }}</span></div>
             <div class="word-line"><span>h</span> <input type="text" name="hword" value="{{ word_h }}" class="g med-text" /><span>{{ mydict['h'] }}</span></div>
             <div class="word-line"><span>i</span> <input type="text" name="iword" value="{{ word_i }}" class="h med-text" /><span>{{ mydict['i'] }}</span></div>
-            <div class="word-line"><span>k</span> <input type="text" name="kword" value="{{ word_k }}" class="j med-text" /><span>{{ mydict['k'] }}</span></div>
-            <div class="word-line"><span>l</span> <input type="text" name="lword" value="{{ word_l }}" class="k med-text" /><span>{{ mydict['l'] }}</span></div>
-            <div class="word-line"><span>m</span> <input type="text" name="mword" value="{{ word_m }}" class="l med-text" /><span>{{ mydict['m'] }}</span></div>
-            <div class="word-line"><span>n</span> <input type="text" name="nword" value="{{ word_n }}" class="m med-text" /><span>{{ mydict['n'] }}</span></div>
-            <div class="word-line"><span>o</span> <input type="text" name="oword" value="{{ word_o }}" class="n med-text" /><span>{{ mydict['o'] }}</span></div>
-            <div class="word-line"><span>p</span> <input type="text" name="pword" value="{{ word_p }}" class="o med-text" /><span>{{ mydict['p'] }}</span></div>
-            <div class="word-line"><span>r</span> <input type="text" name="rword" value="{{ word_r }}" class="q med-text" /><span>{{ mydict['r'] }}</span></div>
-            <div class="word-line"><span>s</span> <input type="text" name="sword" value="{{ word_s }}" class="r med-text" /><span>{{ mydict['s'] }}</span></div><span>No plurals!</span>
-            <div class="word-line"><span>t</span> <input type="text" name="tword" value="{{ word_t }}" class="s med-text" /><span>{{ mydict['t'] }}</span></div>
-            <div class="word-line"><span>w</span> <input type="text" name="wword" value="{{ word_w }}" class="v med-text" /><span>{{ mydict['w'] }}</span></div>
-            <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="x med-text" /><span>{{ mydict['y'] }}</span></div>
+            <div class="word-line"><span>j</span> <input type="text" name="jword" value="{{ word_j }}" class="j med-text" /><span>{{ mydict['j'] }}</span></div>
+            <div class="word-line"><span>l</span> <input type="text" name="lword" value="{{ word_l }}" class="l med-text" /><span>{{ mydict['l'] }}</span></div>
+            <div class="word-line"><span>m</span> <input type="text" name="mword" value="{{ word_m }}" class="m med-text" /><span>{{ mydict['m'] }}</span></div>
+            <div class="word-line"><span>n</span> <input type="text" name="nword" value="{{ word_n }}" class="n med-text" /><span>{{ mydict['n'] }}</span></div>
+            <div class="word-line"><span>o</span> <input type="text" name="oword" value="{{ word_o }}" class="o med-text" /><span>{{ mydict['o'] }}</span></div>
+            <div class="word-line"><span>p</span> <input type="text" name="pword" value="{{ word_p }}" class="p med-text" /><span>{{ mydict['p'] }}</span></div>
+            <div class="word-line"><span>q</span> <input type="text" name="qword" value="{{ word_q }}" class="q med-text" /><span>{{ mydict['q'] }}</span></div>
+            <div class="word-line"><span>r</span> <input type="text" name="rword" value="{{ word_r }}" class="r med-text" /><span>{{ mydict['r'] }}</span></div> <span>No plurals!</span>
+            <div class="word-line"><span>s</span> <input type="text" name="sword" value="{{ word_s }}" class="s med-text" /><span>{{ mydict['s'] }}</span></div>
+            <div class="word-line"><span>t</span> <input type="text" name="tword" value="{{ word_t }}" class="t med-text" /><span>{{ mydict['t'] }}</span></div>
+            <div class="word-line"><span>u</span> <input type="text" name="uword" value="{{ word_u }}" class="u med-text" /><span>{{ mydict['u'] }}</span></div>
+            <div class="word-line"><span>v</span> <input type="text" name="vword" value="{{ word_v }}" class="v med-text" /><span>{{ mydict['v'] }}</span></div>
+            <div class="word-line"><span>w</span> <input type="text" name="wword" value="{{ word_w }}" class="w med-text" /><span>{{ mydict['w'] }}</span></div>
+            <div class="word-line"><span>y</span> <input type="text" name="yword" value="{{ word_y }}" class="y med-text" /><span>{{ mydict['y'] }}</span></div>
     </div> <!-- end word-form -->
     <button class="btn btn-primary btn-lg" name="submit" value="Submit">Submit</button>
         </form>

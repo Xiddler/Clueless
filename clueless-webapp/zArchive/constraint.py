@@ -8,7 +8,6 @@
 
 """
 
-from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in
 from collections import OrderedDict
 
 # Sample form data by a user
@@ -23,26 +22,16 @@ tick = OrderedDict([('a', ''), ('b', ''), ('c', ''), ('d', ''), ('e', ''), ('f',
 # print("Original", tick)
 
 def obeys_rule(users_words):
-    """ method to make rule and filter user's words """
+    """ method to check if user's input follows the constraint and provides feedback as tick or x """ 
     # for word in users_words: # users_words is the list of the user's input words
     for n in range(0, len(users_words)):
         if users_words[n] != '' and users_words[n][0] == users_words[n][-1]:
             # print("Acceptable")
- # <span style='font-size:100px;'>&#10003;</span✓>
-            # tick[users_words[n][0]] = '✓'
             tick[users_words[n][0]] = '✅'
-            # print("Not acceptable")
         elif users_words[n] != '':
-                # tick[users_words[n][0]] = 'N'
+                # print("Not acceptable")
                 tick[users_words[n][0]] = '𐄂'
         else:
             print("PROBLEM 22")
     return tick
-
-# print(obeys_rule(users_words))
-
-
-# if __name__ == "__main__":
-    # obeys_rule(users_words)
-
 

@@ -8,7 +8,7 @@ from config import Config
 from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in
 from collections import OrderedDict
 
-from check_words import obeys_rule
+from constraint_4 import obeys_rule
 from sanitized_input import sanitized_input
 
 
@@ -28,7 +28,7 @@ class Constraints:
         # self.game = f"# {self.num} Level: {self.level} Rule: {self.rule} Time allowed: {self.time}"
         self.game = "# {0} Level: {1} Rule: {2} Time allowed: {3}".format( self.num, self.level, self.rule, self.time)
 
-constraints = Constraints(3, "Easy", "Key letter in first AND last position", "4 mins")
+constraints = Constraints(4, "Easy", "Key letter in first and word contains 'as'", "3 mins") # No k, x or z.
 
 num = constraints.num
 level = constraints.level
@@ -50,7 +50,7 @@ def game():
         # print(data)
         # print(num)
 
-        word_holder = [] # initialise list of words entered by user - will be used to store the users words
+        word_holder = [] # initialise list of words entered by user - will be used to store the users words and will be cleaned up below
 
         word_a = data.get('aword') # data['aword'] requires an initial value in the input field
         word_b = data.get('bword')
@@ -61,26 +61,26 @@ def game():
         word_g = data.get('gword')
         word_h = data.get('hword')
         word_i = data.get('iword')
-        # word_j = data.get('jword')
-        word_k = data.get('kword')
+        word_j = data.get('jword')
+        # word_k = data.get('kword')
         word_l = data.get('lword')
         word_m = data.get('mword')
         word_n = data.get('nword')
         word_o = data.get('oword')
         word_p = data.get('pword')
-        # word_q = data.get('qword')
+        word_q = data.get('qword')
         word_r = data.get('rword')
         word_s = data.get('sword')
         word_t = data.get('tword')
-        # word_u = data.get('uword')
-        # word_v = data.get('vword')
+        word_u = data.get('uword')
+        word_v = data.get('vword')
         word_w = data.get('wword')
         # word_x = data.get('xword')
         word_y = data.get('yword')
         # word_z = data.get('zword')
         # word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_j, word_k, word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t, word_u, word_v, word_w, word_x, word_y, word_z, ])
-        word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i, word_k, word_l, word_m, word_n, word_o, word_p, word_r, word_s, word_t, word_w, word_y])
-        word_holder = sanitized_input(word_holder)
+        word_holder.extend([word_a, word_b, word_c, word_d, word_e, word_f, word_g, word_h, word_i,  word_l, word_m, word_n, word_o, word_p, word_q, word_r, word_s, word_t,  word_u,  word_v, word_w, word_y])
+        word_holder = sanitized_input(word_holder) # returns a cleaned-up list of the user's input
 
         def get_db_words():
 
@@ -98,7 +98,7 @@ def game():
             # print("Closed database successfully")
             return all_items
 
-        get_db_words() 
+        # get_db_words()
 
         # print("Checkpoint 1") 
 
@@ -107,21 +107,23 @@ def game():
         incorrect = []
         def in_database():
             """ method to check if user's word is in database """
-            all_items = get_db_words()
+
+            all_items = get_db_words()  # returns the list all_items which contain all the words in the database.
             for word in word_holder:
                 if word not in all_items and word != "None":
                     incorrect.append(word) # incorrect words added to list for display on the webpage
                 else:
                     correct.append(word)
 
-        in_database() # call method to check that word is in database
+        in_database() # call method to check that word is in database - populates the two lists: correct and incorrect
 
         # TODO check words follow the rule
         # Game 3: words start and end with key letter
 
         # print(word_holder)
         try:
-            mydict = obeys_rule(word_holder) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
+            # mydict = obeys_rule(word_holder) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
+            mydict = obeys_rule(correct) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
             # print("mydict", mydict)
         except:
             print("there is an problem with mydict or obeys_rules")
@@ -132,8 +134,8 @@ def game():
         print("word_holder", word_holder)
         print(incorrect)
         print(correct)
-
-        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_k=word_k, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p, word_r=word_r, word_s=word_s, word_t=word_t, word_w=word_w, word_y=word_y, word_holder=word_holder, correct=correct,  incorrect=incorrect,  rule=rule, time=time, mydict=mydict)
+        # in case of POST request - i.e. once user presses <ENTER> or SUBMIT button
+        return render_template('game.html', word_a=word_a, word_b=word_b, word_c=word_c, word_d=word_d, word_e=word_e, word_f=word_f, word_g=word_g, word_h=word_h, word_i=word_i, word_j=word_j, word_l=word_l, word_m=word_m, word_n=word_n, word_o=word_o, word_p=word_p,  word_q=word_q, word_r=word_r, word_s=word_s, word_t=word_t, word_u=word_u, word_v=word_v, word_w=word_w, word_y=word_y, word_holder=word_holder, correct=correct,  incorrect=incorrect,  rule=rule, time=time, mydict=mydict)
 
         # print("mydict again ==>", mydict)
         # print("mydict elem", mydict['d'])
@@ -149,10 +151,12 @@ def game():
 
 
      # Input fields are blank if loaded by pressing the PLAY! button in index.html
+    # in case of GET request - i.e. on landing on page - all fields are blank
     else:
-        mydict = OrderedDict([('a', ''), ('b', ''), ('c', ''), ('d', ''), ('e', ''), ('f', ''), ('g', ''), ('h', ''), ('i', ''), ('k', ''), ('l', ''), ('m', ''), ('n', ''), ('o', ''), ('p', ''), ('r', ''), ('s', ''), ('t', ''), ('w', ''), ('y', '')])
+        mydict = OrderedDict([('a', ''), ('b', ''), ('c', ''), ('d', ''), ('e', ''), ('f', ''), ('g', ''), ('h', ''), ('i', ''), ('j', ''), ('l', ''), ('m', ''), ('n', ''), ('o', ''), ('p', ''), ('r', ''), ('s', ''), ('t', ''), ('u', ''), ('v', ''), ('w', ''), ('y', '')])
         
     return render_template('game.html', num=num, level=level, rule=rule, time=time, mydict=mydict) 
 
-if __name__ == '__main__':
-    app.run(host ='0.0.0.0', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
+# if __name__ == '__main__':
+    # app.run(host ='127.0.0.1', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
+

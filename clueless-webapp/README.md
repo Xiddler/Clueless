@@ -1,5 +1,10 @@
 # clueless-webapp
 
+2020-06-09
+Finally am able to SSH into the remote server. Much, much easier to work on stuff now.
+Uploaded game 4 : Constraint is: Key letter in first position and word contains 'as' 
+
+
 2020-06-05
 I got the clueless webapp working on donaghmccarthy.ie today. Yipee.
 I pushed the working repo from the remote server to github.com.

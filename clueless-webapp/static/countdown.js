@@ -16,7 +16,7 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var timer = 60 * 4,
+    var timer = 60 * 3,
         display = document.querySelector('#time');
     startTimer(timer, display);
 };
