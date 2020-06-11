@@ -1,6 +1,9 @@
 Where the various games are stored.
 
-So far 2020-05-28 - I have sent two to the Keohanes. 
+2020-05-28 - So far I have sent two to the Keohanes. 
+2020-06-09 -  I have published Games 3 and 4 to donaghmccarthy.ie
+
+
 1. Contains a p and the first letter is the key letter - 180s - Easy
 2. Ends in a w and the first letter is the key letter                - 4 mins - Easy
 3. Key letter in first and last position. No j, q, u, v, x or z Med 5 mins. 

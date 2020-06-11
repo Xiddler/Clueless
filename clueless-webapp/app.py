@@ -1,55 +1,45 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/python3 
+# -*- coding: utf-8 -*- 
 
+from flask import Flask, url_for, render_template, request, redirect 
+import sqlite3 
+from config import Config 
+from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in from collections 
+from collections import OrderedDict 
+from constraint_4 import obeys_rule 
+from sanitized_input import sanitized_input 
 
-from flask import Flask, url_for, render_template, request, redirect
-import sqlite3
-from config import Config
-from string import ascii_lowercase as alfbet # lowercase letters of the alphabet built in
-from collections import OrderedDict
+app = Flask(__name__) 
+app.config.from_object(Config) # Secret key in config.py 
+secret_key = app.config['SECRET_KEY'] 
 
-from constraint_4 import obeys_rule
-from sanitized_input import sanitized_input
-
-
-app = Flask(__name__)
-app.config.from_object(Config) # Secret key in config.py
-secret_key = app.config['SECRET_KEY']
-
-class Constraints:
+class Constraints: 
     """ class to set the rules of the game """  
+    def __init__(self, num, level, rule, time): 
+        self.num = num 
+        self.level = level 
+        self.rule = rule 
+        self.time = time  
+        self.game = f"# {self.num} Level: {self.level} Rule: {self.rule} Time allowed: {self.time}" 
+        self.game = "# {0} Level: {1} Rule: {2} Time allowed: {3}".format( self.num, self.level, self.rule, self.time) 
 
-    def __init__(self, num, level, rule, time):
+constraints = Constraints(4, "Easy", "Key letter in first and word contains 'as'", "3 mins") # No k, x or z.  
 
-        self.num = num
-        self.level = level
-        self.rule = rule
-        self.time = time
-        # self.game = f"# {self.num} Level: {self.level} Rule: {self.rule} Time allowed: {self.time}"
-        self.game = "# {0} Level: {1} Rule: {2} Time allowed: {3}".format( self.num, self.level, self.rule, self.time)
-
-constraints = Constraints(4, "Easy", "Key letter in first and word contains 'as'", "3 mins") # No k, x or z.
-
-num = constraints.num
-level = constraints.level
-rule = constraints.rule
-time = constraints.time
+num = constraints.num 
+level = constraints.level 
+rule = constraints.rule 
+time = constraints.time 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    # Welcome page with constraints
-    return render_template('index.html', num=num, level=level, rule=rule, time=time)
+def index(): # Welcome page with constraints 
+    return render_template('index.html', num=num, level=level, rule=rule, time=time) 
 
-@app.route('/game', methods=['GET', 'POST'])
-def game():
-    # print("in the /game route now")
-    # The present game
-    # loaded when the player presses enter in any of the input boxes or presses the submit button
+@app.route('/game', methods=['GET', 'POST']) 
+def game(): 
+    # print("in the /game route now") # The present game # loaded when the player presses enter in any of the input boxes or presses the submit button 
     if request.method == 'POST': 
-        data = request.form # in key:value pairs
-        # print(data)
-        # print(num)
-
+        data = request.form # in key:value pairs 
+        # print(data) # print(num) 
         word_holder = [] # initialise list of words entered by user - will be used to store the users words and will be cleaned up below
 
         word_a = data.get('aword') # data['aword'] requires an initial value in the input field
@@ -123,7 +113,7 @@ def game():
         # print(word_holder)
         try:
             # mydict = obeys_rule(word_holder) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
-            mydict = obeys_rule(correct) # calls the external app to confirm words follow the rule for Game 3 - allows Y or N adjacent to each word
+            mydict = obeys_rule(correct) # returns a list by calling the external module to confirm words follow the current constraint - allows Y or N adjacent to each word
             # print("mydict", mydict)
         except:
             print("there is an problem with mydict or obeys_rules")
@@ -157,6 +147,6 @@ def game():
         
     return render_template('game.html', num=num, level=level, rule=rule, time=time, mydict=mydict) 
 
-# if __name__ == '__main__':
-    # app.run(host ='127.0.0.1', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
+if __name__ == '__main__':
+    app.run(host ='127.0.0.1', port=5000, debug=True) # '0.0.0.0' allows browsing from other devices on the lan.
 
